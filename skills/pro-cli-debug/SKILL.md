@@ -37,6 +37,17 @@ chainlaunch whoami                              # verify identity + role
 Non-interactive/CI: `CHAINLAUNCH_API_URL=<url> CHAINLAUNCH_API_KEY=clpro_… chainlaunch …`
 Pin a context per shell: `CHAINLAUNCH_CONTEXT=<name>`.
 
+**Multiple contexts?** If `chainlaunch context list` shows more than one
+context, STOP and ask the user which server/context they mean before running
+any further commands — do not silently assume the active (●) one is correct.
+Debugging the wrong environment (e.g. staging instead of prod, or a
+teammate's dev cluster) wastes time at best and causes real confusion at
+worst. Once the user answers, either switch persistently with
+`chainlaunch context use <name>`, or — if you shouldn't change what the user
+has active — prefix every command in this session with
+`CHAINLAUNCH_CONTEXT=<name>` instead, which overrides the target without
+touching the stored active flag.
+
 **Self-signed HTTPS** (k3d/dev clusters, `Login failed: self signed certificate`):
 
 ```bash
