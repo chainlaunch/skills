@@ -14,7 +14,7 @@ npx skills add chainlaunch/skills
 Install a specific skill only:
 
 ```bash
-npx skills add chainlaunch/skills --skill pro-cli-debug
+npx skills add chainlaunch/skills --skill chainlaunch-pro-cli-debug
 ```
 
 List available skills without installing:
@@ -27,8 +27,8 @@ npx skills add chainlaunch/skills --list
 
 | Skill | Description |
 |-------|-------------|
-| [`pro-cli-debug`](skills/pro-cli-debug/SKILL.md) | Read-only debugging of a ChainLaunch Pro instance — node logs, chaincode logs, lifecycle timelines, channel config — using the `chainlaunch` CLI. |
-| [`pro-cli-reference`](skills/pro-cli-reference/SKILL.md) | Full command and flag reference for the `chainlaunch` CLI, including mutating commands (create/delete/start/stop/revoke). |
+| [`chainlaunch-pro-cli-debug`](skills/chainlaunch-pro-cli-debug/SKILL.md) | Read-only debugging of a ChainLaunch Pro instance — node logs, chaincode logs, lifecycle timelines, channel config — using the `chainlaunch` CLI. |
+| [`chainlaunch-pro-cli-reference`](skills/chainlaunch-pro-cli-reference/SKILL.md) | Full command and flag reference for the `chainlaunch` CLI, including mutating commands (create/delete/start/stop/revoke). |
 
 ## About ChainLaunch
 

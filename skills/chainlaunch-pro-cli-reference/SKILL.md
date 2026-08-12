@@ -1,18 +1,19 @@
 ---
-name: pro-cli-reference
+name: chainlaunch-pro-cli-reference
 description: >
-  Full command and flag reference for the npm/bunx CLI (@chainlaunch/pro-cli,
-  bin `chainlaunch`). Covers every command including mutations:
-  login/logout/whoami, context, nodes (start/stop/restart/delete), networks
-  (delete), organizations (create/delete), chaincodes (read-only), keys
-  (delete), key-providers, backups, users, api-keys (create/revoke), plugins,
-  settings, env vars, contexts, output-format flags.
+  Full command and flag reference for ChainLaunch's npm/bunx CLI
+  (@chainlaunch/pro-cli, bin `chainlaunch`). Covers every command including
+  mutations: login/logout/whoami, context, nodes (start/stop/restart/delete),
+  networks (delete), organizations (create/delete), chaincodes (read-only),
+  keys (delete), key-providers, backups, users, api-keys (create/revoke),
+  plugins, settings, env vars, contexts, output-format flags.
   TRIGGER: user names `@chainlaunch/pro-cli` or `bunx chainlaunch`, or wants to
   run/script/build against the ChainLaunch REST-API CLI, incl. mutations
   (create an org, revoke an api-key, delete a node/network).
   SKIP: read-only troubleshooting of a running instance (node won't start,
-  chaincode failing, "why is my network unhealthy") — use pro-cli-debug
-  instead, it has the diagnostic workflows this skill doesn't.
+  chaincode failing, "why is my network unhealthy") — use
+  chainlaunch-pro-cli-debug instead, it has the diagnostic workflows this
+  skill doesn't.
 ---
 
 # @chainlaunch/pro-cli — Full Command Reference
