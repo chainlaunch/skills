@@ -1,5 +1,5 @@
 ---
-name: pro-cli-debug
+name: chainlaunch-pro-cli-debug
 description: >
   Read-only debugging of a running ChainLaunch Pro instance with the Bun CLI
   (@chainlaunch/pro-cli, run via a version-pinned `bunx @chainlaunch/pro-cli@x.y.z`). Inspect node logs,
