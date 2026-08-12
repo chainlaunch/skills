@@ -2,7 +2,7 @@
 name: pro-cli-debug
 description: >
   Read-only debugging of a running ChainLaunch Pro instance with the Bun CLI
-  (@chainlaunch/pro-cli, run via `bunx @chainlaunch/pro-cli`). Inspect node logs,
+  (@chainlaunch/pro-cli, run via a version-pinned `bunx @chainlaunch/pro-cli@x.y.z`). Inspect node logs,
   chaincode container logs, lifecycle timelines, network/channel config, orgs, keys,
   and backups without mutating anything. Use when diagnosing a node that won't start,
   a chaincode that fails invoke/query, endorsement/policy mismatches, TLS errors, or
@@ -16,11 +16,13 @@ description: >
 CLI: `chainlaunch` from the `@chainlaunch/pro-cli` npm package. No install needed:
 
 ```bash
-bunx @chainlaunch/pro-cli <command>
-# or install globally
-bun add -g @chainlaunch/pro-cli
-chainlaunch <command>
+bunx @chainlaunch/pro-cli@<version> <command>
 ```
+
+Pin a version. Avoid `bun add -g` / `npm install -g` — the global install's
+bin is also named `chainlaunch`, which can collide with a Go `chainlaunch`
+binary already on PATH from a different ChainLaunch install; `bunx` never
+touches PATH so there's nothing to collide.
 
 **This skill is READ-ONLY.** Never run mutating commands while debugging:
 no `start`/`stop`/`restart`/`delete`/`create`/`revoke`/`use`. If a fix requires
@@ -28,14 +30,28 @@ mutation, report findings and let the user decide.
 
 ## Setup / auth (once)
 
+**Check first — don't assume a context already exists:**
+
 ```bash
-chainlaunch login <url> --api-key clpro_…      # or -u user -p pass
-chainlaunch context list                        # verify which server is active
+chainlaunch context list --json
+```
+
+If it errors or returns an empty list, and no `CHAINLAUNCH_API_URL`/
+`CHAINLAUNCH_API_KEY` env vars are set either, the CLI has nowhere to point
+yet. Ask the user for the server URL and either an API key (`clpro_…`) or a
+username/password, then log in. Prefer running `login` interactively (omit
+the secret flags) so the credential is prompted for and never lands in shell
+history or `ps` output:
+
+```bash
+chainlaunch login <url>                         # prompts for API key or username/password
 chainlaunch whoami                              # verify identity + role
 ```
 
-Non-interactive/CI: `CHAINLAUNCH_API_URL=<url> CHAINLAUNCH_API_KEY=clpro_… chainlaunch …`
-Pin a context per shell: `CHAINLAUNCH_CONTEXT=<name>`.
+Non-interactive/CI (no TTY): skip `login` entirely and set env vars instead —
+`CHAINLAUNCH_API_URL=<url> CHAINLAUNCH_API_KEY=clpro_… chainlaunch …` — which
+keeps the secret out of shell history the same way. Pin a context per shell:
+`CHAINLAUNCH_CONTEXT=<name>`.
 
 **Multiple contexts?** If `chainlaunch context list` shows more than one
 context, STOP and ask the user which server/context they mean before running

@@ -28,6 +28,7 @@ npx skills add chainlaunch/skills --list
 | Skill | Description |
 |-------|-------------|
 | [`pro-cli-debug`](skills/pro-cli-debug/SKILL.md) | Read-only debugging of a ChainLaunch Pro instance — node logs, chaincode logs, lifecycle timelines, channel config — using the `chainlaunch` CLI. |
+| [`pro-cli-reference`](skills/pro-cli-reference/SKILL.md) | Full command and flag reference for the `chainlaunch` CLI, including mutating commands (create/delete/start/stop/revoke). |
 
 ## About ChainLaunch
 
