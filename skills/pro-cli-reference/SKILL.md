@@ -21,13 +21,26 @@ CLI: `chainlaunch` from npm package `@chainlaunch/pro-cli`. REST-API client
 for a ChainLaunch Pro server's `/api/v1`.
 
 ```bash
-bunx @chainlaunch/pro-cli --help          # no install
-bun add -g @chainlaunch/pro-cli           # or: npm install -g @chainlaunch/pro-cli
-chainlaunch --help
+bunx @chainlaunch/pro-cli@<version> --help
 ```
+
+Prefer a pinned `bunx @chainlaunch/pro-cli@<version>` over `bun add -g` /
+`npm install -g` — the global install's bin is also named `chainlaunch`,
+which can collide with a Go `chainlaunch` binary already on PATH from a
+different ChainLaunch install. `bunx` never touches PATH.
 
 Global: every read command accepts `--json` (suppresses spinners/tables, pipes cleanly to `jq`).
 Output defaults to table; a context can default to JSON — see Contexts below.
+
+**Before running any command, confirm the CLI is authenticated:**
+```bash
+chainlaunch context list --json
+```
+If this errors or returns an empty list, there's no logged-in context yet —
+walk the user through Auth below (env vars for a one-off session, or
+`chainlaunch login` for a persisted context) before attempting any other
+command. Don't guess at a server URL or credentials; ask if they weren't
+already provided.
 
 **Commands below marked destructive prompt for confirmation by default** —
 `-f, --force` / `-y, --yes` skip that prompt. Only pass those flags when the
